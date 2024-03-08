@@ -52,3 +52,75 @@ taxes = [
     {"department": "IT Department", "name": "hiring", "value_percents": 6},
     {"department": "BizDev Department", "name": "sales", "value_percents": 20},
 ]
+
+print("Отделы:")
+for item in departments:
+    print(item["title"])
+print(" ")
+
+names_list = []
+for item in departments:
+    for name in item["employers"]:
+        names_list.append(name["first_name"] + " " + name["last_name"])
+print("Все сотрудники компании:\n", "\n".join(names_list), sep="")
+print(" ")
+
+for item in departments:
+    print("Отдел:", item["title"])
+    print("-" * 10)
+    print("Сотрудники:")
+    for name in item["employers"]:
+        print(f"{name['first_name']} {name['last_name']}")
+        
+    print(" ")
+
+names_list = []
+for item in departments:
+    for name in item["employers"]:
+        if name["salary_rub"] > 100000:
+            names_list.append(name["first_name"] + " " + name["last_name"])
+        else:
+            pass
+print("Все сотрудники компании которые получают больше 100 000руб:\n", "\n".join(names_list), sep="")
+print(" ")
+
+names_list = []
+for item in departments:
+    for name in item["employers"]:
+        if name["salary_rub"] < 80000:
+            names_list.append(name["first_name"] + " " + name["last_name"])
+        else:
+            pass
+print("Все сотрудники компании которые получают меньше 80 000руб:\n", "\n".join(names_list), sep="")
+print(" ")
+
+salary_list_hr_dep = []
+salary_list_it_dep = []
+for item in departments:
+    if item["title"] is "HR department":
+        for salary in item["employers"]:
+            salary_list_hr_dep.append(salary["salary_rub"])
+    else:
+        for salary in item["employers"]:
+            salary_list_it_dep.append(salary["salary_rub"])
+print(f"Зарплата сотрудников отдела {departments[0]['title']} составила {sum(salary_list_hr_dep):,.0f}руб в месяц. ")
+print(f"Зарплата сотрудников отдела {departments[1]['title']} составила {sum(salary_list_it_dep):,.0f}руб в месяц. ")
+print(" ")
+
+print(f"Минимальная зарплата сотрудника отдела {departments[0]['title']} составила {min(salary_list_hr_dep):,.0f}руб в месяц. ")
+print(f"Минимальная зарплата сотрудника отдела {departments[1]['title']} составила {min(salary_list_it_dep):,.0f}руб в месяц. ")
+print(" ")
+
+print(f"Минимальная зарплата сотрудника отдела {departments[0]['title']} составила {min(salary_list_hr_dep):,.0f}руб в месяц. ")
+print(f"Средняя зарплата сотрудника отдела {departments[0]['title']} составила {sum(salary_list_hr_dep) / len(salary_list_hr_dep):,.0f}руб в месяц. ")
+print(f"Максимальная зарплата сотрудника отдела {departments[0]['title']} составила {max(salary_list_hr_dep):,.0f}руб в месяц. ")
+print(f"Минимальная зарплата сотрудника отдела {departments[1]['title']} составила {min(salary_list_it_dep):,.0f}руб в месяц. ")
+print(f"Средняя зарплата сотрудника отдела {departments[1]['title']} составила {sum(salary_list_it_dep) / len(salary_list_it_dep):,.0f}руб в месяц. ")
+print(f"Максимальная зарплата сотрудника отдела {departments[1]['title']} составила {max(salary_list_it_dep):,.0f}руб в месяц. ")
+print(" ")
+print(" ")
+print(" ")
+
+
+
+
